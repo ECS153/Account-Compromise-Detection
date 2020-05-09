@@ -1,6 +1,6 @@
 ﻿# § The SoC - Proposal:
 
-> Members: Nikita Andrikanis and Kyle Muldoon
+> *Members* : Nikita Andrikanis and Kyle Muldoon
 
 ### _Summary_:
 
