@@ -1,6 +1,6 @@
-﻿# § Milestones
+﻿# § Meeting Notes [1]
 
-> 8 May 2020 Meeting
+> 8 May 2020
 
 ## Briefing:
 During this meeting, we met with our Senior Security Analyst Jeffrey Rowe to discuss the overall goal of the project and any relevant technologies/APIs we will require.
