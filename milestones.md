@@ -4,6 +4,9 @@
 > Milestone 1
 > 12 May 2020
 
+
+**[Recap Video](https://www.youtube.com/watch?v=PDeN6tICP9U&feature=youtu.be)**
+
 **Summary:**
 We had a meeting on 8 May 2020 to discuss the project goals, details, and technologies/API we would require. We identified an initial prototype, and what we plan on implementing for subsequent versions (as we plan on continuing to develop this project over the summer). The extensive meeting notes and design details are found here:
 
