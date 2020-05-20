@@ -1,11 +1,36 @@
 ﻿
 # § Milestones
 
+> Milestone 2
+> 19 May 2020
+
+**[Recap Video 2](https://www.youtube.com/watch?v=9X872PMz32w&feature=youtu.be)
+
+Progress:
+- Completed script to query Microsoft Azure for recent riskyUsers as are flagged by the preliminary risk assessment.
+- Built a JSON data straucture of individual sign-ins related to each of the identified risky accounts.
+- Implemented MaxMind DB query into the data collection script for additional contextual information for each investigation.
+- Established initial time frame window for analysis: 14 days. This number will be adjusted during our end-of-the-week meetings based on test results.
+- Completed simple optimizations to the data collection script to support very large data volumes. Will be done more thoroughly in the future.
+
+Upcoming:
+- 2 Main Phases we can work on simultaneously this week
+    - We will begin writing out the risk-analysis algorithm. This will use Microsoft and MaxMind data.
+    - Redirecting Microsoft and Azure data through the ELK stack pipeline to allow us to also use CAS logs for our algorithm. This will make all of our data input/output through ELK.
+- Define intergaces so that we can be data source agnostic as we add additional risk factors in the future and beyond.
+
+Blocks:
+- Our progress on redirecting data input through the ELK stack depends on when our BastionHost access is approved (expecting in the next 48 hours). Luckily, this doesn't affect our development of the algorithm itself.
+
+
 > Milestone 1
 > 12 May 2020
 
 
 **[Recap Video](https://www.youtube.com/watch?v=PDeN6tICP9U&feature=youtu.be)**
+
+
+
 
 **Summary:**
 We had a meeting on 8 May 2020 to discuss the project goals, details, and technologies/API we would require. We identified an initial prototype, and what we plan on implementing for subsequent versions (as we plan on continuing to develop this project over the summer). The extensive meeting notes and design details are found here:
