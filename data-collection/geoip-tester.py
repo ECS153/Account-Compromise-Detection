@@ -17,9 +17,6 @@ import datetime
 import os
 import sys
 
-# install ip2geotools
-from ip2geotools.databases.noncommercial import DbIpCity
-
 config = json.load(open(sys.argv[1]))
 
 app = msal.ConfidentialClientApplication(
@@ -47,9 +44,6 @@ if "access_token" in result:
 
     today = datetime.datetime.now() - datetime.timedelta(hours=6)
     temp_split = str(today).split(" ")
-    print(temp_split)
-    temptemp = temp_split[1].split(".")
-    print(temptemp)
     today = temp_split[0]
     # Format as per Graphs API 2014-01-01T00:00:00Z
 
@@ -68,7 +62,6 @@ if "access_token" in result:
     data['context'] = []
 
     for item in graph_data['value']:
-        # print(item['userDisplayName'])
         ip = item['ipAddress']
 
         lat = item['location']['geoCoordinates']['latitude']
