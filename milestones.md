@@ -1,25 +1,29 @@
 ﻿
 # § Milestones
 
+------
+
 > Milestone 3
 > 26 May 2020
 
 **[Recap Video 3](https://www.youtube.com/watch?v=u0Wd7o9tq_M)
 
 Progress:
-- Completed our data pipeline to capture data from both MS Azure and our ELK log systems to populate tables for each risky user.
-- Began using Maxmind Database as our source of location data for any given IP address, as opposed to searching through Aure (sometimes has incorrect results)
-- We are now additionally using User Agent (sent within HTTP requests) to see if risky behavior is evident
+- Completed our data pipeline to capture data from both MS Azure and our ELK log systems to populate tables for each risky user. These are fully loaded into the algorithm script with as small overhead as we could get.
+- After running some statistical analysis on the Azure geoip, we found that its geoip database is much less frequently updated than Maxmind Geoip2 Database. For this reason, our data collection pipeline now includes the use of Maxmind Database as our source of location data for any given IP address.
+- As per your suggestion, we implemented User Agent data as an additional threat intel source. This is provided by Maxmind as well.
+- Finally, we fully implemented our first-iteration of the spacio-temporal analysis script. After continuing to implement additional risk factors into the algorithm, we will meet on Friday of this week to adjust the weights of each factor, tuning the final output.
 
-Upcoming:
-- Complete the score rating functions for each of our chosen factors
-- Using these indiviual components to calculate our aggregated, weighted sum
-- 
+WIP - Goals for the Week:
+- Complete the score rating functions for each of our chosen factors.
+- Using these individual components to calculate our aggregated, weighted sum.
+- We were officially approved for our BastionHost account this morning (Tuesday morning), so we will be able to set up queries of ELK for CAS logs.
+- Hold our end-of-week meeting on Friday to address weights of each risk factor and discuss the goals for the following week.
 
 Blocks:
-- Storing our newly generated logs withing our ELK stack is going to be very intensive, and will not change what we deliver with our project; it will only help us do our job as analysts (all analysis will still be available)
-- We will continue with this if we feel our ranking algorithm is properly completed.
+- Storing our newly generated logs within our ELK stack is going to be very intensive, and will not change what we deliver with our project; it will only help us do our job as analysts (all analysis will still be available). In other words, we will continue to use 2 separate query scripts for Azure and ELK, rather than pipelining Azure logs **into** ELK, and then using a single query to extract all data.
 
+------
 
 > Milestone 2
 > 19 May 2020
@@ -42,6 +46,7 @@ Upcoming:
 Blocks:
 - Our progress on redirecting data input through the ELK stack depends on when our BastionHost access is approved (expecting in the next 48 hours). Luckily, this doesn't affect our development of the algorithm itself.
 
+------
 
 > Milestone 1
 > 12 May 2020
