@@ -4,6 +4,7 @@
 ------
 
 > Milestone 3
+
 > 26 May 2020
 
 **[Recap Video 3](https://www.youtube.com/watch?v=u0Wd7o9tq_M)
@@ -26,6 +27,7 @@ Blocks:
 ------
 
 > Milestone 2
+
 > 19 May 2020
 
 **[Recap Video 2](https://www.youtube.com/watch?v=9X872PMz32w&feature=youtu.be)
@@ -49,6 +51,7 @@ Blocks:
 ------
 
 > Milestone 1
+
 > 12 May 2020
 
 
