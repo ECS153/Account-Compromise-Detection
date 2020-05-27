@@ -6,6 +6,19 @@
 
 **[Recap Video 3](https://www.youtube.com/watch?v=u0Wd7o9tq_M)
 
+Progress:
+- Completed our data pipeline to capture data from both MS Azure and our ELK log systems to populate tables for each risky user.
+- Began using Maxmind Database as our source of location data for any given IP address, as opposed to searching through Aure (sometimes has incorrect results)
+- We are now additionally using User Agent (sent within HTTP requests) to see if risky behavior is evident
+
+Upcoming:
+- Complete the score rating functions for each of our chosen factors
+- Using these indiviual components to calculate our aggregated, weighted sum
+- 
+
+Blocks:
+- Storing our newly generated logs withing our ELK stack is going to be very intensive, and will not change what we deliver with our project; it will only help us do our job as analysts (all analysis will still be available)
+- We will continue with this if we feel our ranking algorithm is properly completed.
 
 
 > Milestone 2
