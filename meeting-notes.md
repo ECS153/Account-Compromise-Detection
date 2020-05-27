@@ -51,6 +51,4 @@ For this project, we will be extracting a significant chunk of our data from the
 
 ## Current Progress:
 
-So far, we have set up both Elastic Stack and MaxMind to allow us to pull data for developing this project. By **15 May (Friday)**, we plan on writing the Microsoft Graphs tool to allow us to query their Identity Protection database directly.
-
-Thus, by the end of this week, we will be able to begin the development of the primary algorithm based on spacio-temporal analysis of Delta T and Geoposition.
+This is found in our milestones.md file.
