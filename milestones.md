@@ -1,6 +1,13 @@
 ﻿
 # § Milestones
 
+> Milestone 3
+> 26 May 2020
+
+**[Recap Video 3](https://www.youtube.com/watch?v=u0Wd7o9tq_M)
+
+
+
 > Milestone 2
 > 19 May 2020
 
