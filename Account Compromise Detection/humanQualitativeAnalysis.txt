@@ -3,7 +3,9 @@ Manual Investigations on the 20 accounts:
 In this file, we went through the 20 most recently flagged users and performed our manual investigation on each one.
 For our verdicts on account compromise, we categorized all of the users based on the severity of the compromise.
 Severity is affected by both level of suspicion and potential access to university databases, such as the Library VPN.
-NOTE: Within each category, we didn't rank the users. To compare the results to the algorithm's output, we checked each account's position on the ranked list and whether it corresponds to the severity level we manually assigned to each user.
+NOTE: Within each category, we didn't rank the users.
+To compare the results to the algorithm's output, we checked each account's position on the ranked list and whether it corresponds
+to the severity level we manually assigned to each user.
 
 
 Extremely Compromised
