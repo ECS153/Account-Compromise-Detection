@@ -11,7 +11,7 @@ Our project was done in 2 Phases:
 
 The scripts in *./data_collection* were used to collect data from Microsoft Azure and MaxMind DB, building a *data.json* of potentially risky users and their corresponding contextual data. In *./ranking*, we have our algorithm scripts. These take in *data.json* and perform our analysis. The final ranked list is then returned to the console.
 
-#### [*data_collection_AZURE.py*](./final-project-the-soc/blob/master/Account%20Compromise%20Detection/data_collection/data_collection_AZURE.py)
+#### [*data_collection_AZURE.py*](https://github.com/ECS153/final-project-the-soc/blob/master/Account%20Compromise%20Detection/data_collection/data_collection_AZURE.py)
 This script builds our queries to Microsoft Azure using Graphs API. First, the top 20 users are collected from Azure's unranked list based on most recently updated risk. For each user, we send an additional query to obtain all of the user's activity from the last 14 days. To obtain GeoIP, we query MaxMind DB. This data is then compiled into *data.json*, which is now ready for analysis.
  
  #### [*mmdb_lookup.py*](https://github.com/ECS153/final-project-the-soc/blob/master/Account%20Compromise%20Detection/mmdb_lookup.py)
