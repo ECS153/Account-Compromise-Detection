@@ -5,6 +5,9 @@
 > 
 ## Account Compromise Detection Tool
 
+To introduce our project and present our motivations and high-level design, please see the following:
+> [The SoC Team Final Presentation](https://docs.google.com/presentation/d/1ZKcMBV9brrDnOtE6fCTymUyhL-Se3hIqxRg2GKEjPjA/edit?usp=sharing)
+
 Our project was done in 2 Phases:
  - Data collection and processing
  - Algorithm
