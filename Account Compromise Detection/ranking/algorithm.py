@@ -1,26 +1,27 @@
-#################################################################################################
-#                       IMPORTS
-#################################################################################################
+##############################################################
+# The algorithm script, essentially our tool's "main"
+#   - This script calculates the weighted sum for each user
+##############################################################
+
 import json
 from ranking.utilities import *
 
-
-#################################################################################################
-#                       ENVIRONMENT SETUP
-#################################################################################################
+####################
+# Environment set-up
+####################
 # Open data.json location
 data_path = "../data_collection/data.json"
 data = json.load(open(data_path))
 
 
-#################################################################################################
-#                       BUILD EVIDENCE TABLE
-#################################################################################################
+#######################
+# Build evidence table
+#######################
 master_table = build_evidence_table(data)
 
-#################################################################################################
-#                       RUN ALGORITHM LOOP FOR EACH USER, BUILD A REPORT FOR EACH ONE
-#################################################################################################
+################################################################
+# Run algorithm loop for each user, buld a report for each one
+################################################################
 
 # INVESTIGATE EACH USER, ADD NEW CALCULATIONS BACK TO USER INVESTIGATION
 for user in master_table:
@@ -51,9 +52,9 @@ for user in master_table:
 
 
 
-#################################################################################################
-#                       PROVIDE SORTED LIST (DESC) OF RISKY USERS
-#################################################################################################
+###################################################
+#  Provide sorted list (descending) of risky users
+###################################################
 
 unsorted_reports = []
 
@@ -67,16 +68,4 @@ for user_report in sorted_reports:
     print("{\n\tTIMESPACE: " + str(user_report['timeSpaceScore']) + "\n\tVPN: " + str(user_report['VPNScore']) +
           "\n\tUSERAGENT: " + str(user_report['userAgentScore'])  + "\n\tCLIENTAPPS: " +
           str(user_report['clientAppScore']) + "\n}\n")
-
-
-
-
-
-
-
-
-
-
-
-
 
