@@ -1,150 +1,136 @@
-##################################################################
-# Query Engine for Microsoft Azure with support for GeoIP tools
-# Run with parameter parameters.json
-##################################################################
+#################################################################################
+# Main Data Collection Script
+#   - Data comes from Microsoft Azure logs and MaxMind DB for contextual geodata
+#################################################################################
 
-import sys
+
 import json
 import logging
 
 import requests
 import msal
 
+import pprint
 import datetime
-import threading
-import os
 import sys
 
-# import pprint
-# pp = pprint.PrettyPrinter(indent=4)
+import mmdb_lookup
 
-# Testing query speed with free-license service
-# Will fully convert to MaxMind after testing
-# Thus, ip2geotools will be temporary
-from ip2geotools.databases.noncommercial import DbIpCity
 
-# Load in config file
-# WILL NOT BE INCLUDED IN GITHUB. THIS FILE REMAINS ON THE MACHINE.
 config = json.load(open(sys.argv[1]))
 
 # Create a preferably long-lived app instance which maintains a token cache.
 app = msal.ConfidentialClientApplication(
     config["client_id"], authority=config["authority"],
     client_credential=config["secret"],
-    # token_cache=...  # Default cache is in memory only. SerializableTokenCache Documentation:
-    # https://msal-python.rtfd.io/en/latest/#msal.SerializableTokenCache
-)
+    )
 
-
-def setQueryDate(daysIn):
-    setDate = datetime.datetime.now() - datetime.timedelta(days=daysIn)
-
-    # Format as per Graphs API 2014-01-01T00:00:00Z
-    tempSplit = str(setDate).split(" ")
-
-    # Optional logic to include time as well, which Graphs query doesn't like for some reason...
-    # splitForDays= temp_split[1].split(".")
-
-    # This returns properly formatted date WITHOUT hours
-    setDate = tempSplit[0]
-
-    return setDate
-
-
-# Init result
 result = None
 
-# Look up a token from cache with no end user
+# Get token from cache, if possible
 result = app.acquire_token_silent(config["scope"], account=None)
 
+# Otherwise, refer to json containing app secrets
 if not result:
     logging.info("No suitable token exists in cache. Let's get a new one from AAD.")
     result = app.acquire_token_for_client(scopes=config["scope"])
 
 if "access_token" in result:
-    # Sets endpoint
-    # Our specified endpoint will query for the last 10 risky users,
-    # ordered by when the risk level was most recently updated.
-    endpoint = config["endpoint"]
+    # Specify query endpoint
+    endpoint = "https://graph.microsoft.com/beta/riskyUsers?$filter=riskLevel eq 'high'&$orderby=riskLastUpdatedDateTime desc"
 
     # Calling graph using the access token
     graph_data = requests.get(
         endpoint,
         headers={'Authorization': 'Bearer ' + result['access_token']}, ).json()
-    # print("Response: ")
-    # print(json.dumps(graph_data, indent=2))
+    print("Graph API call result: ")
 
-    # Collect unique Azure object id's for each risky user in our /beta/riskyUsers query
+    # Query gets top 20 results, so load those into a riskUsers_id array
     riskyUsers_id = []
     counter = 0
     for each in graph_data['value']:
-        if not counter == 10:
+        if not counter == 20:
             riskyUsers_id.append(each['id'])
             counter += 1
         else:
             break
 
-    # Call function to get date for time window (14 days currently)
-    # Function will also format it to fit the Microsoft Graphs query
-    setQueryDate_result = setQueryDate(14)
+    # Date time parsing
+    today = datetime.datetime.now() - datetime.timedelta(days=14)
+    temp_split = str(today).split(" ")
+    print(temp_split)
+    temptemp = temp_split[1].split(".")
+    print(temptemp)
+    today = temp_split[0]
+    # Format as per Graphs API 2014-01-01T00:00:00Z
 
     data_master = []
     for each in riskyUsers_id:
-        print("Risky user object id: " + each)
+        print(each)
 
-        endpoint = "https://graph.microsoft.com/beta/auditLogs/signIns?&$filter=userID eq '" + each + "' and createdDateTime ge " + setQueryDate_result
+        # Specify new endpoint to get all user sign-ins from past 14 days
+        endpoint = "https://graph.microsoft.com/beta/auditLogs/signIns?&$filter=userID eq '" + each + "' and createdDateTime ge " + today
+        print(endpoint)
 
         graph_data = requests.get(
             endpoint,
             headers={'Authorization': 'Bearer ' + result['access_token']}, ).json()
-        print("Sending request with endpoint: " + endpoint)
+        print("Graph API sub-call: ")
 
-        logCount = 0
+        temp_count = 0
         data = {}
         data['id'] = each
         data['context'] = []
 
-        # Get ip, lat, lng for each signIn event per specified riskyUser object id:
         for item in graph_data['value']:
             ip = item['ipAddress']
             lat = None
             lng = None
 
-            # If location is unavailable, then make additional call to a GeoIP service
-            # Azure/Graphs API returns None for IPv6 addresses
-            # TODO: This logic would be changed to MaxMind when testing is complete
             if item['location']['city'] is None:
-                response = DbIpCity.get(ip, api_key='free')
-                lat = response.latitude
-                lng = response.longitude
+                print("Pulling from MaxMind")
+                response = mmdb_lookup.getdata_mmdb(ip)
+                lat = response[0]
+                lng = response[1]
+                print(ip)
+                print(response)
             else:
                 lat = item['location']['geoCoordinates']['latitude']
                 lng = item['location']['geoCoordinates']['longitude']
 
             createdDateTime = item['createdDateTime']
-            logCount += 1
+            temp_count += 1
+
+            clientAppUsed = item['clientAppUsed']
+            userAgent = item['userAgent']
+            os = item['deviceDetail']['operatingSystem']
+            browser = item['deviceDetail']['browser']
+
+            details = {}
+            details['clientAppUsed'] = clientAppUsed
+            details['userAgent'] = userAgent
+            details['os'] = os
+            details['browser'] = browser
 
             data['context'].append({
                 'ip': ip,
                 'datetime': createdDateTime,
                 'lat': lat,
-                'lng': lng
+                'lng': lng,
+                'details': details
             })
 
-        data['records_in_context'] = str(logCount)
+        data['records_in_context'] = str(temp_count)
 
         data_master.append(data)
 
-    # Write the data to the raw .json file
-    # This .json is passed to algorithm script
+    print("\nWriting to data.json!")
     with open('data.json', 'w+') as outfile:
-        # TODO: remove indentation to increase efficiency!
         json.dump(data_master, outfile, indent=4)
 
-    print("data-collection-script.py has completed!")
+    print("Data collection complete!")
 
-# Get errors if Graphs API call fails...
+
 else:
     print(result.get("error"))
     print(result.get("error_description"))
-    print(result.get("correlation_id"))
