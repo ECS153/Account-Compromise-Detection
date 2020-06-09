@@ -127,7 +127,8 @@ def time_space_analysis(user):
 
     return susPercent
 
-
+# NOTE! The subnets could not be included in this submission.
+#   However, this function would check to see if the given IP belongs to the Library VPN network
 def check_vpn_usage(user, spacetime):
     user_si_logs = user['signInLogs']
 
@@ -135,21 +136,21 @@ def check_vpn_usage(user, spacetime):
     reg_count = 0
     for i in range(len(user_si_logs) - 1):
         ip = ipaddress.ip_address(user_si_logs[i]['ip'])
-        if ip in ipaddress.ip_network('128.120.234.0/24'):
+        if ip in ipaddress.ip_network(''):
             vpn_count += 1
-        elif ip in ipaddress.ip_network('128.120.235.0/24'):
+        elif ip in ipaddress.ip_network(''):
             vpn_count += 1
-        elif ip in ipaddress.ip_network('128.120.236.0/24'):
+        elif ip in ipaddress.ip_network(''):
             vpn_count += 1
-        elif ip in ipaddress.ip_network('128.120.237.0/24'):
+        elif ip in ipaddress.ip_network(''):
             vpn_count += 1
-        elif ip in ipaddress.ip_network('128.120.238.0/24'):
+        elif ip in ipaddress.ip_network(''):
             vpn_count += 1
-        elif ip in ipaddress.ip_network('128.120.239.0/24'):
+        elif ip in ipaddress.ip_network(''):
             vpn_count += 1
-        elif ip in ipaddress.ip_network('128.120.251.0/24'):
+        elif ip in ipaddress.ip_network(''):
             vpn_count += 1
-        elif ip in ipaddress.ip_network('169.237.45.0/24'):
+        elif ip in ipaddress.ip_network(''):
             vpn_count += 1
         reg_count += 1
 
