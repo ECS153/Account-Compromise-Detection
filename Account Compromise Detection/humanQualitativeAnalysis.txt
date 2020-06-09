@@ -1,67 +1,42 @@
-894647d1-540d-4a00-ad6e-828729baa3e3 - multiple dozens of logins per day from countries all around the world, many distinct IP addresses
-    Very Very Compromised
+In this file, we went through the 20 most recently flagged users and performed our manual investigation on each one.
+For our verdicts on account compromise, we categorized all of the users based on the severity of the compromise.
+Severity is affected by both level of suspicion and potential access to university databases, such as the Library VPN.
+NOTE: Within each category, we didn't rank the users. To compare the results to the algorithm's output, we checked each account's position on the ranked list and whether it corresponds to the severity level we manually assigned to each user.
 
-61d37c51-9c3f-44bd-975f-59b74935afe5 - multiple dozens of logins per day from countries all around the world, many distinct IP addresses
-    Very Very Compromised
+Extremely Compromised
+	- These accounts were marked as such due to their high level of compromise and likely access to university databases
 
+48e9eb84-bfec-477c-a1a2-c752ac9d7ade - Lots of suspicious logins, mixed success/failure, multiple Applications used
+894647d1-540d-4a00-ad6e-828729baa3e3 - Dozens of logins per day from countries all around the world, many distinct IP addresses
 9129a15e-f032-49fe-ac24-457554664881 - Chaotic Azure, tons of logins in one day
-	VERY Compromised
-
 61f56b6c-9f39-42fd-bc62-542c33f6d2ec - Dozens of logins per day from countries all around the world, many distinct IP addresses
-    Very Compromised
-
 afdf0312-501a-4aaa-8292-9a26b3f1829a - Chaotic Azure, Suspicious logins, over 20 in one day
-	VERY Compromised
-
 f5a55f63-f86c-4c0b-b62f-f847050a06be - Chaotic Azure, Suspicious logins from abroad
-	Very Compromised
-
 f25b9377-9db3-4af5-9238-49d8f062abbb - Chaotic Azure, Suspicious logins from abroad
-	Very Compromised
-
 3601ed37-3d56-4f47-a93b-35923669c1fe - Chaotic Azure, sus logins over 10 times a day
-	Very Compromised
-
 4797e7de-6abb-4709-93c5-536eaef7c657 - Chaotic Azure, lots of logins in one day
-	Very Compromised
+	
+	
+	
+Compromised
+	- These accounts are less severe than above, but still exhibit telling compromise
 
-36b9da43-d973-4ef4-8947-66af3e42f5e6 - Some consistent logins from US, otherwise lots of suspicious logins
-	Compromised
+61d37c51-9c3f-44bd-975f-59b74935afe5 - Logins from suspicious IPs, about a dozen a day, mixed successes/failures
+36b9da43-d973-4ef4-8947-66af3e42f5e6 - Some consistent logins from US, otherwise a decent amount of suspicious logins
+20eb85bd-feb0-46b5-bf0e-94831a2d5cec - Consistency from Istanbul, but other login events are suspicious
+69a467bc-4988-47c5-8cbc-3f8bc2e85bc3 - Lots of logins in one day, decent amount of failures, suspicious IPs
+c8a54a09-15de-4fdc-8804-233d9c3b6d3f - Lots of logins in one day, decent amount of failures, suspicious IPs
+9e4f71e2-bafe-4be3-b161-404d5c4aabed - Lots of logins in one day, mostly successes, suspicious IPs
+7d224104-0e23-4e18-9472-5d37f470f14d - Lots of logins in one day, many distinct IP addresses
 
-48e9eb84-bfec-477c-a1a2-c752ac9d7ade - Lots of suspicious logins, mixed success/failure, multiple Applications
-	 Very Compromised
 
-20eb85bd-feb0-46b5-bf0e-94831a2d5cec - Consistency from Istanbul, but otherwise chaotic
-	Compromised
+Questionable
+	- These accounts exhibit some suspicious behavior, but not enough to be comfirmed as compromised
 
-69a467bc-4988-47c5-8cbc-3f8bc2e85bc3 - Chaotic Azure, lots of logins in one day, decent amount of failures
-	Compromised
+681fbb4c-6940-4b00-a98c-b9ded9c63c51 - A few suspicious logins, only 2-3 a day, potential VPN?
+77375841-8b8c-48fd-8c15-12680bee2e71 - A solid bit of consistent legitimate US logins
 
-c8a54a09-15de-4fdc-8804-233d9c3b6d3f - Chaotic Azure, lots of logins in one day, decent amount of failures
-	Compromised
 
-9e4f71e2-bafe-4be3-b161-404d5c4aabed - Chaotic Azure, lots of logins in one day
-	Compromised
-
-7d224104-0e23-4e18-9472-5d37f470f14d - many logins per day from countries all around the world, many distinct IP addresses
-    Compromised
-
-681fbb4c-6940-4b00-a98c-b9ded9c63c51 - Chaotic Azure, Suspicious logins, only 3-5 a day, potential VPN?
-	Moderately Compromised
-
-77375841-8b8c-48fd-8c15-12680bee2e71 - Chaotic Azure, a solid bit of consistent legitimate US logins; otherwise suspicious
-	Moderately Compromised
-
+Not Compromised
+	- These accounts are confirmed false positives
 f025ca0d-ebfd-4075-872b-c2199c96f100 - Some suspicious attempts to sign-in from abroad, others look normal
-	Not Compromised
-
-
-
-
-
-
-
-
-
-
-
