@@ -28,7 +28,6 @@ result = None
 result = app.acquire_token_silent(config["scope"], account=None)
 
 if not result:
-    logging.info("No suitable token exists in cache. Let's get a new one from AAD.")
     result = app.acquire_token_for_client(scopes=config["scope"])
 
 if "access_token" in result:
@@ -75,11 +74,7 @@ if "access_token" in result:
             'lng': lng
         })
 
-        # print(item['location'])
-
-        # print(graph_data['value']['userDisplayName'])
         data['records_in_context'] = str(temp_count)
-        # print(temp_count)
 
     data_master.append(data)
 
@@ -93,4 +88,3 @@ if "access_token" in result:
 else:
     print(result.get("error"))
     print(result.get("error_description"))
-    print(result.get("correlation_id"))  # You may need this when reporting a bug
